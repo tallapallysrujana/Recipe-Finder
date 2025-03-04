@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Digital Recipe Book</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/modal.css" />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <h1><span class="icon">🍳</span> Digital Recipe Book</h1>
+      </div>
+    </header>
+
+    <main class="container">
+      <div class="search-section">
+        <div class="search-bar">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Search recipes or ingredients..."
+          />
+          <button id="searchBtn">🔍</button>
+        </div>
+
+        <div class="filters">
+          <select id="cuisineFilter">
+            <option value="all">All Cuisines</option>
+            <option value="Italian">Italian</option>
+            <option value="Indian">Indian</option>
+            <option value="Mexican">Mexican</option>
+            <option value="Chinese">Chinese</option>
+            <option value="Japanese">Japanese</option>
+            <option value="American">American</option>
+            <option value="Mediterranean">Mediterranean</option>
+            <option value="Thai">Thai</option>
+          </select>
+
+          <select id="mealTypeFilter">
+            <option value="all">All Meal Types</option>
+            <option value="Breakfast">Breakfast</option>
+            <option value="Lunch">Lunch</option>
+            <option value="Dinner">Dinner</option>
+            <option value="Dessert">Dessert</option>
+            <option value="Snack">Snack</option>
+          </select>
+        </div>
+
+        <div class="actions">
+          <button id="addRecipeBtn" class="btn primary">➕ Add Recipe</button>
+          <button id="helpBtn" class="btn secondary">❓ Help</button>
+        </div>
+      </div>
+
+      <div id="recipeGrid" class="recipe-grid"></div>
+    </main>
+
+    <!-- Add Recipe Modal -->
+    <div id="addRecipeModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Add New Recipe</h2>
+          <span class="close">&times;</span>
+        </div>
+        <form id="addRecipeForm">
+          <div class="form-group">
+            <label for="recipeName">Recipe Name</label>
+            <input type="text" id="recipeName" required />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="recipeCuisine">Cuisine</label>
+              <select id="recipeCuisine" required>
+                <option value="">Select cuisine</option>
+                <option value="Italian">Italian</option>
+                <option value="Indian">Indian</option>
+                <option value="Mexican">Mexican</option>
+                <option value="Chinese">Chinese</option>
+                <option value="Japanese">Japanese</option>
+                <option value="American">American</option>
+                <option value="Mediterranean">Mediterranean</option>
+                <option value="Thai">Thai</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="recipeMealType">Meal Type</label>
+              <select id="recipeMealType" required>
+                <option value="">Select meal type</option>
+                <option value="Breakfast">Breakfast</option>
+                <option value="Lunch">Lunch</option>
+                <option value="Dinner">Dinner</option>
+                <option value="Dessert">Dessert</option>
+                <option value="Snack">Snack</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="cookingTime">Cooking Time (minutes)</label>
+              <input type="number" id="cookingTime" min="1" required />
+            </div>
+
+            <div class="form-group">
+              <label for="servings">Servings</label>
+              <input type="number" id="servings" min="1" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Ingredients</label>
+            <div id="ingredientsList">
+              <div class="ingredient-input">
+                <input
+                  type="text"
+                  class="ingredient"
+                  placeholder="e.g., 2 cups flour"
+                  required
+                />
+                <button type="button" class="remove-ingredient">✕</button>
+              </div>
+            </div>
+            <button
+              type="button"
+              id="addIngredientBtn"
+              class="btn secondary small"
+            >
+              + Add Ingredient
+            </button>
+          </div>
+
+          <div class="form-group">
+            <label for="instructions">Instructions</label>
+            <textarea id="instructions" rows="4" required></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="btn secondary" id="cancelAddRecipe">
+              Cancel
+            </button>
+            <button type="submit" class="btn primary">Add Recipe</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Help Modal -->
+    <div id="helpModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Help & Tips</h2>
+          <span class="close">&times;</span>
+        </div>
+        <div class="help-content">
+          <div class="help-item">
+            <span class="help-icon">🔍</span>
+            <div>
+              <h3>Search Recipes</h3>
+              <p>
+                Type recipe names or ingredients in the search bar to find
+                matching recipes.
+              </p>
+            </div>
+          </div>
+
+          <div class="help-item">
+            <span class="help-icon">🏷️</span>
+            <div>
+              <h3>Filter Options</h3>
+              <p>
+                Use cuisine and meal type filters to narrow down your search
+                results.
+              </p>
+            </div>
+          </div>
+
+          <div class="help-item">
+            <span class="help-icon">➕</span>
+            <div>
+              <h3>Add Recipes</h3>
+              <p>
+                Click "Add Recipe" to share your own recipes with detailed
+                instructions.
+              </p>
+            </div>
+          </div>
+
+          <div class="help-item">
+            <span class="help-icon">📖</span>
+            <div>
+              <h3>View Details</h3>
+              <p>
+                Click on any recipe card to view full instructions and
+                ingredients.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recipe Detail Modal -->
+    <div id="recipeDetailModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 id="detailRecipeName"></h2>
+          <span class="close">&times;</span>
+        </div>
+        <div id="recipeDetail" class="recipe-detail">
+          <!-- Content will be dynamically inserted here -->
+        </div>
+      </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/modal.js"></script>
+    <script src="js/recipeCard.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
